@@ -15,10 +15,11 @@ export class UsersService {
         return this.users.find(user => user.id === id) || null;
     }
     
-    createUser(user: CreateUserDto): User {
+    createUser(createUserDto: CreateUserDto): User {
        const newUser: User = {
-        ...user,
+        ...createUserDto,
         id: uuidv4(),
+        lastLogin: null,
         createdAt: new Date(),
         updatedAt: new Date(),
        }
