@@ -5,7 +5,7 @@ export interface User {
   password: string;
   accountNumber: string;
   balance: number;
-  lastLogin: Date;
+  lastLogin?: Date;
   createdAt: Date;
   updatedAt: Date;
 }
