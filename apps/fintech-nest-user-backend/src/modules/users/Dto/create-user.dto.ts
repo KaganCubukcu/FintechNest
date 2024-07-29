@@ -1,10 +1,6 @@
-import { IsString, IsEmail, IsNotEmpty, IsNumber, IsDate } from 'class-validator';
+import { IsString, IsEmail, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateUserDto {
-  @IsString()
-  @IsNotEmpty()
-  id: string;
-
   @IsString()
   @IsNotEmpty()
   name: string;
@@ -24,17 +20,5 @@ export class CreateUserDto {
   @IsNumber()
   @IsNotEmpty()
   balance: number;
-
-  @IsDate()
-  @IsNotEmpty()
-  lastLogin: Date;
-
-  @IsDate()
-  @IsNotEmpty()
-  createdAt: Date;
-
-  @IsDate()
-  @IsNotEmpty()
-  updatedAt: Date;
 }
 
