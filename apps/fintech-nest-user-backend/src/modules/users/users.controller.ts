@@ -1,10 +1,12 @@
 import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.interface';
+import { CreateUserDto } from './Dto/create-user.dto';
+import { AccountsService } from '../accounts/accounts.service';
 
 @Controller('users')
 export class UsersController {
-    constructor(private readonly usersService: UsersService) {}
+    constructor(private readonly usersService: UsersService, private readonly accountsService: AccountsService) {}
 
     @Get()
     getUsers(): User[] {
@@ -17,8 +19,10 @@ export class UsersController {
     }
 
     @Post()
-    createUser(@Body() user: User): void {
-        this.usersService.createUser(user);
+    async createUser(@Body() createUserDto: CreateUserDto) {
+       const newUser = this.usersService.createUser(createUserDto);
+       const newAccount = await this.accountsService.createAccount(newUser.id);
+       return { user: newUser, account: newAccount };
     }
 
     @Put(':id')
