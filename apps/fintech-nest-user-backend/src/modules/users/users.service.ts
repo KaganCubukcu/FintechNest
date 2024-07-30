@@ -45,4 +45,9 @@ export class UsersService {
         this.users.splice(userIndex, 1);
         return true;
     }
+
+    findByEmail(email: string): User {
+        return this.users.find(user => user.email === email) || null;
+    }
+
 }
